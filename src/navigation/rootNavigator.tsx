@@ -4,6 +4,7 @@ import useNavigationTheme from './useNavigationTheme';
 import BottomTabsNavigation from './bottomTabsNavigation';
 import AuthStackNavigator from './authStackNavigator';
 import {useAppContext} from '../context';
+import {SafeAreaView} from 'react-native';
 
 export default function RootNavigator() {
   const navigationTheme = useNavigationTheme();
@@ -11,7 +12,13 @@ export default function RootNavigator() {
 
   return (
     <NavigationContainer theme={navigationTheme}>
-      {token ? <BottomTabsNavigation /> : <AuthStackNavigator />}
+      {token ? (
+        <SafeAreaView style={{flex: 1}}>
+          <BottomTabsNavigation />
+        </SafeAreaView>
+      ) : (
+        <AuthStackNavigator />
+      )}
     </NavigationContainer>
   );
 }

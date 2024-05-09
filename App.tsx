@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {AppProvider} from './src/context';
 import {RootNavigator} from './src/navigation';
-import {AppState, AppStateStatus, Platform, SafeAreaView} from 'react-native';
+import {AppState, AppStateStatus, Platform} from 'react-native';
 import {focusManager} from '@tanstack/react-query';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
@@ -21,13 +21,11 @@ const App = () => {
   }, []);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <QueryClientProvider client={queryClient}>
-        <AppProvider>
-          <RootNavigator />
-        </AppProvider>
-      </QueryClientProvider>
-    </SafeAreaView>
+    <QueryClientProvider client={queryClient}>
+      <AppProvider>
+        <RootNavigator />
+      </AppProvider>
+    </QueryClientProvider>
   );
 };
 
